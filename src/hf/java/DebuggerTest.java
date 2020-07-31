@@ -16,7 +16,7 @@ public class DebuggerTest {
         map.put("major","IT");
 
         String age = map.get("age");
-//        System.out.println(age);
+        System.out.println(age);
         System.out.println("age = " + age);
 
         map.remove("major");
