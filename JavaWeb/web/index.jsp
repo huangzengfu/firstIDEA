@@ -11,6 +11,6 @@
     <title>Java学习</title>
   </head>
   <body>
-  <h1 style="color:lightsalmon">HelloWorld!!</h1>
+  <h1 style="color:orangered">HelloWorld!!</h1>
   </body>
 </html>
