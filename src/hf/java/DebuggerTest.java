@@ -10,7 +10,7 @@ public class DebuggerTest {
         }
 
         HashMap<String,String> map = new HashMap<>();
-        map.put("name","Tom");
+        map.put("name","HF");
         map.put("age","23");
         map.put("school","Tsinghua");
         map.put("major","IT");
