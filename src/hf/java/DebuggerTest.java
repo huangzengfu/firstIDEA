@@ -11,7 +11,7 @@ public class DebuggerTest {
 
         HashMap<String,String> map = new HashMap<>();
         map.put("name","Tom");
-        map.put("age","20");
+        map.put("age","200");
         map.put("school","Tsinghua");
         map.put("major","IT");
 
