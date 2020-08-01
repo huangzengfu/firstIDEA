@@ -13,7 +13,7 @@ public class DebuggerTest {
         map.put("name","HF");
         map.put("age","23");
         map.put("school","Tsinghua");
-        map.put("major","IT");
+        map.put("major","Computer");
 
         String age = map.get("age");
         System.out.println(age);
