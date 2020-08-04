@@ -23,6 +23,5 @@ public class DebuggerTest {
 
         System.out.println(map);
 
-
     }
 }
