@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Stack;
+
 /**
  * @author hf
  * @create 2020-09-19 15:39
@@ -18,22 +20,32 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(hero2);
         singleLinkedList.addByOrder(hero3);
         singleLinkedList.addByOrder(hero4);
-        //测试修改节点
+/*        //测试修改节点
         singleLinkedList.list();
         HeroNode newHeroNode = new HeroNode(3, "小吴", "智多星~~");
         singleLinkedList.update(newHeroNode);
         System.out.println("修改后链表的数据：\n");
         singleLinkedList.list();
 
-//        System.out.println("测试删除：\n");
-//        singleLinkedList.del(1);
-//        singleLinkedList.list();
+        System.out.println("测试删除：\n");
+        singleLinkedList.del(1);
+        singleLinkedList.list();
 
         //获取单链表有效节点个数
         System.out.println("\n有效的节点个数="+getLength(singleLinkedList.getHead()));
         //查找单链表中的倒数第k个节点
         HeroNode res = findLastIndexNode(singleLinkedList.getHead(),2);
-        System.out.println("res="+res);
+        System.out.println("res="+res);*/
+
+        //单链表反转
+        System.out.println("反转前的链表~~");
+        singleLinkedList.list();
+        System.out.println("反转后的链表~~");
+        reverseList(singleLinkedList.getHead());
+        singleLinkedList.list();
+        //用栈将单链表逆序输出
+        System.out.println("用栈逆序输出：\n");
+        reversePrint(singleLinkedList.getHead());
 
     }
 
@@ -83,6 +95,44 @@ public class SingleLinkedListDemo {
             cur = cur.next;
         }
         return cur;
+    }
+    //实现单链表的反转
+    public static void reverseList(HeroNode head){
+        //如果链表为空或者只有一个节点，直接返回
+        if(head.next == null||head.next.next==null){
+            return;
+        }
+        HeroNode cur = head.next;//当前链表的第一个节点
+        HeroNode reverseHead = new HeroNode(0,"","");//定义一个新的头结点用来存放反转的链表
+        HeroNode next = null;//用来存放当前节点的后一个节点，当前节点被操作后已经不再原来的链表
+
+        while (cur != null){
+            next = cur.next;
+            cur.next = reverseHead.next;
+            reverseHead.next = cur;
+            cur = next;
+        }
+        head.next = reverseHead.next;
+
+    }
+    //实现单链表的逆序输出（栈）
+    public static  void reversePrint(HeroNode head){
+        if(head.next == null){
+            return;//空表，不打印
+        }
+
+        Stack<HeroNode> stack = new Stack<HeroNode>();
+        HeroNode cur = head.next;
+        //将链表的所有节点压入stack中
+        while(cur != null){
+            stack.push(cur);
+            cur = cur.next;
+        }
+        //将栈中的数据输出
+        while(stack.size()>0){
+            System.out.println(stack.pop());
+        }
+
     }
 }
 
