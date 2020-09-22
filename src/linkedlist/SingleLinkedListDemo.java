@@ -116,7 +116,7 @@ public class SingleLinkedListDemo {
 
     }
     //实现单链表的逆序输出（栈）
-    public static  void reversePrint(HeroNode head){
+    public static void reversePrint(HeroNode head){
         if(head.next == null){
             return;//空表，不打印
         }
