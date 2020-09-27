@@ -20,24 +20,24 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(hero2);
         singleLinkedList.addByOrder(hero3);
         singleLinkedList.addByOrder(hero4);
-/*        //测试修改节点
+        //测试修改节点
         singleLinkedList.list();
-        HeroNode newHeroNode = new HeroNode(3, "小吴", "智多星~~");
-        singleLinkedList.update(newHeroNode);
-        System.out.println("修改后链表的数据：\n");
-        singleLinkedList.list();
+//        HeroNode newHeroNode = new HeroNode(4, "小吴", "智多星~~");
+//        singleLinkedList.update(newHeroNode);
+//        System.out.println("修改后链表的数据：\n");
+//        singleLinkedList.list();
 
         System.out.println("测试删除：\n");
-        singleLinkedList.del(1);
+        singleLinkedList.del(5);
         singleLinkedList.list();
 
-        //获取单链表有效节点个数
+       /* //获取单链表有效节点个数
         System.out.println("\n有效的节点个数="+getLength(singleLinkedList.getHead()));
         //查找单链表中的倒数第k个节点
         HeroNode res = findLastIndexNode(singleLinkedList.getHead(),2);
         System.out.println("res="+res);*/
 
-        //单链表反转
+        /*//单链表反转
         System.out.println("反转前的链表~~");
         singleLinkedList.list();
         System.out.println("反转后的链表~~");
@@ -45,7 +45,7 @@ public class SingleLinkedListDemo {
         singleLinkedList.list();
         //用栈将单链表逆序输出
         System.out.println("用栈逆序输出：\n");
-        reversePrint(singleLinkedList.getHead());
+        reversePrint(singleLinkedList.getHead());*/
 
     }
 
@@ -203,11 +203,10 @@ class SingleLinkedList {
             return;
         }
         //找到需要修改的节点，根据编号no
-//        HeroNode temp = head.next;
-        HeroNode temp = head;
+        HeroNode temp = head.next;
         boolean flag = false;//flag用来确定节点是否找到，默认为false
         while (true) {
-            if (temp.next == null) { //链表遍历完毕
+            if (temp == null) { //链表遍历完毕
                 break;
             }
             if(temp.no == newHeroNode.no){
@@ -233,10 +232,13 @@ class SingleLinkedList {
     //1、头结点不能修改，仍然通过一个辅助指针来找到添加的位置
     //2、说明：我们在比较时，是temp.next.no 和 需要删除的节点的编号no 做比较
     public void del(int no){
+        if(head.next == null){
+            System.out.println("链表为空~~");
+        }
         HeroNode temp = head;
         boolean flag = false; //标志是否找到待删除的节点
         while(true) {
-            if (temp == null) {//
+            if (temp.next == null) {//
                 break;
             }
             if(temp.next.no == no){
