@@ -10,20 +10,20 @@ import java.util.Stack;
  **/
 public class PolandNotation {
     public static void main(String[] args) {
-        /*逆波兰表达式求值*/
-//        //先定义一个逆波兰表达式 3 4 + 5 * 6 - 使用空格隔开
+        /*逆波兰表达式求值
+        先定义一个逆波兰表达式 3 4 + 5 * 6 - 使用空格隔开
+        思路：
+        1、先将逆波兰式放在arrayList中
+        2、将Arraylist传给一个函数，遍历ArrayList配合栈完成计算*/
 //        String suffixExpression = "3 4 + 5 * 6 -";
-//        //思路：1、先将逆波兰式放在arrayList中
-//        //2、将Arraylist传给一个函数，遍历ArrayList配合栈完成计算
-//
 //        List<String> rpnList = getListString(suffixExpression);
-//        System.out.println("rpnList="+rpnList);
 //        int res = calculate(rpnList);
 //        System.out.printf("逆波兰表达式%s 的结果是 %d",suffixExpression,res);
         /*中缀表达式转成后缀表达式*/
-        //思路：1、1+((2+3)*4)-5 转成 1 2 3 + 4 * + 5 -
-        //2、因为直接对str进行操作不方便，因此先将中缀表达式转成对应的list
-        //3、将得到的中缀表达式对应的list 转为 后缀表达式的list
+        /*思路：
+        1、1+((2+3)*4)-5 转成 1 2 3 + 4 * + 5 -
+        2、因为直接对str进行操作不方便，因此先将中缀表达式转成对应的list
+        3、将得到的中缀表达式对应的list 转为 后缀表达式的list*/
         String expression = "1+((2+3)*4)-5";
         List<String> infixExpression = toInfixExpression(expression);
         System.out.println(infixExpression);
@@ -36,7 +36,6 @@ public class PolandNotation {
         List<String> list = new ArrayList<String>();
 //        Collections.addAll(list, split);
         for (String elem : split) {
-            System.out.println(elem);
             list.add(elem);
         }
         return list;
@@ -94,7 +93,7 @@ public class PolandNotation {
         StringBuilder str;// 对多位数的拼接
         char c;
         do {
-            //如果字符是一个操作符，就加入到老师
+            //如果字符是一个操作符，就加入到ls
             if ((c = s.charAt(i)) < 48 || (c = s.charAt(i)) > 57) {
                 ls.add(c + "");
                 i++;
