@@ -22,6 +22,7 @@ public class Queue {
         }
         //依次放入皇后，并判断是否有冲突
         for (int i = 0; i < max; i++) {
+            //添加皇后
             array[i] = n;
             if (judge(n)) {
                 //接着放入n+1个皇后，开始递归
