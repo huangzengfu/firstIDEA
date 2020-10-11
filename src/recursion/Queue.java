@@ -11,7 +11,8 @@ public class Queue {
     int[] array = new int[max];
 
     public static void main(String[] args) {
-
+        Queue queue = new Queue();
+        queue.check(0);
     }
 
     //放置第n个皇后
