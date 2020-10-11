@@ -24,7 +24,7 @@ public class Queue {
         //依次放入皇后，并判断是否有冲突
         for (int i = 0; i < max; i++) {
             //添加皇后
-            array[i] = n;
+            array[n] = i;
             if (judge(n)) {
                 //接着放入n+1个皇后，开始递归
                 check(n + 1);
@@ -48,8 +48,8 @@ public class Queue {
 
     //定义输出皇后位置结果
     private void print() {
-        for (int value : array) {
-            System.out.print(value + " ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
 
         System.out.println();
