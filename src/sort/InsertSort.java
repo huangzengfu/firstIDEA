@@ -21,8 +21,8 @@ public class InsertSort {
 
             //while循环找到insertVal的位置
             /*说明
-             * 1、insertIndex>=0 确保找insertVal插入位置时数组不越界
-             * 2、insertVal < arr[insertIndex] 说明带插入数还没找到位置
+             * 1、 insertIndex>=0 确保找insertVal插入位置时数组不越界
+             * 2、 insertVal < arr[insertIndex] 说明带插入数还没找到位置
              * */
             while (insertIndex >= 0 && insertVal < arr[insertIndex]) {
                 arr[insertIndex + 1] = arr[insertIndex];
