@@ -99,7 +99,6 @@ public class QuickSort {
         if (Integer.compare(arr[right], arr[center]) < 0) {
             swapReferences(arr, right, center);
         }
-
         //这里将枢纽值赋到数组最后，因为arr[right]经过之前的换位已经是大值，所有枢纽值要换位到arr[right-1]
         swapReferences(arr, center, right - 1);
         return arr[right - 1];
