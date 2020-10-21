@@ -10,20 +10,20 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] arr = {8, 4, 5, 7, 1, 3, 6, 2};
         int[] temp = new int[arr.length];
-        mergeSort(arr,0,arr.length-1,temp);
+        mergeSort(arr, 0, arr.length - 1, temp);
         System.out.println(Arrays.toString(arr));
     }
 
     //分+合方法
-    public static void mergeSort(int[] arr,int left,int right,int[] temp){
-        if(left<right){
-            int mid = (left+right)/2;
+    public static void mergeSort(int[] arr, int left, int right, int[] temp) {
+        if (left < right) {
+            int mid = (left + right) / 2;
             //向左递归进行分解
-            mergeSort(arr,left,mid,temp);
+            mergeSort(arr, left, mid, temp);
             //向右递归进行分解
-            mergeSort(arr,mid+1,right,temp);
+            mergeSort(arr, mid + 1, right, temp);
             //合并
-            merge(arr,left,mid,right,temp);
+            merge(arr, left, mid, right, temp);
         }
     }
 
@@ -71,4 +71,5 @@ public class MergeSort {
         }
 
     }
+
 }
