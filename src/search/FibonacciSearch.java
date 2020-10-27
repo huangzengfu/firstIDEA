@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class FibonacciSearch {
     public static void main(String[] args) {
         int[] arr = {1, 8, 10, 89, 1000, 1234};
-        int value = fibonacciSearch(arr,1324);
+        int value = fibonacciSearch(arr,0);
         System.out.println("index="+fibonacciSearch(arr,1324));
     }
 
