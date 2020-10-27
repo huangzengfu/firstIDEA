@@ -55,7 +55,7 @@ public class FibonacciSearch {
         }
         //使用while来循环处理，找到value，前提是左指针在右指针前边
         while (left <= right) {
-            mid = left + fibArray[fibIndex - 1] - 1;
+            mid = left +  fibArray[fibIndex - 1] - 1;
             //当查找的值小于当前值时应该向数组的前边遍历
             if (value < temp[mid]) {
                 right = mid - 1;
