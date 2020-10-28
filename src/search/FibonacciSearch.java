@@ -51,7 +51,7 @@ public class FibonacciSearch {
         //将新填充的内容替换为最后的数
         //例：temp = {1,3,4,6,9,11,0,0} => {1,3,4,6,9,11,11,11}
         for (int i = right + 1; i < temp.length; i++) {
-            temp[i] = arrays[right];
+            temp[i]  = arrays[right];
         }
         //使用while来循环处理，找到value，前提是左指针在右指针前边
         while (left <= right) {
