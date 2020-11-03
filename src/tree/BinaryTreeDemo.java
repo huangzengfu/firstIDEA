@@ -198,7 +198,7 @@ class HeroNode {
             this.left.delNode(no);
         }
         if (this.right != null) {
-            this.right.delNode(no);
+            this.right.delNode(no) ;
         }
     }
 
