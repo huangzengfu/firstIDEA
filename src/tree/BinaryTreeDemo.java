@@ -45,6 +45,19 @@ class BinaryTree {
         this.root = root;
     }
 
+    //递归删除
+    public void delNode(int no) {
+        if (root != null) {
+            if (root.getNo() == no) {
+                root = null;
+            } else {
+                root.delNode(no);
+            }
+        } else {
+            System.out.println("二叉树为空~");
+        }
+    }
+
     //前序遍历
     public void preOrder() {
         if (this.root != null) {
@@ -73,28 +86,28 @@ class BinaryTree {
     }
 
     //前序查找
-    public HeroNode preOrderSearch(int no){
-        if(root!=null){
+    public HeroNode preOrderSearch(int no) {
+        if (root != null) {
             return this.root.preOrderSearch(no);
-        }else{
+        } else {
             return null;
         }
     }
 
     //中序查找
-    public HeroNode infixOrderSearch(int no){
-        if(root!=null){
+    public HeroNode infixOrderSearch(int no) {
+        if (root != null) {
             return this.root.infixOrderSearch(no);
-        }else{
+        } else {
             return null;
         }
     }
 
     //前序查找
-    public HeroNode postOrderSearch(int no){
-        if(root!=null){
+    public HeroNode postOrderSearch(int no) {
+        if (root != null) {
             return this.root.postOrderSearch(no);
-        }else{
+        } else {
             return null;
         }
     }
@@ -152,6 +165,43 @@ class HeroNode {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    //递归删除节点
+    /*1、如果删除的是叶子节点，直接删除
+      2、如果删除的是非叶子节点，还需要删除该节点的子树
+    * */
+    public void delNode(int no) {
+        /*思路*/
+        /* 1. 因为我们的二叉树是单向的，所以我们是判断当前结点的子结点是否需要删除结点，而不能去判断 当前这个结点是不是需要删除结点
+         * 2. 如果当前结点的左子结点不为空，并且左子结点 就是要删除结点，就将 this.left = null; 并且就返回 (结束递归删除)
+         * 3. 如果当前结点的右子结点不为空，并且右子结点 就是要删除结点，就将 this.right= null ;并且就返回 (结束递归删除)
+         * 4. 如果第 2 和第 3 步没有删除结点，那么我们就需要向左子树进行递归删除 5. 如果第 4 步也没有删除结点，则应当向右子树进行递归删除.
+         */
+        //2. 如果当前结点的左子结点不为空，并且左子结点 就是要删除结点，就将 this.left = null; 并且就返回(结束递归删除)
+        if (this.left != null && this.left.no == no) {
+            if (this.left.left != null) {
+                this.left = this.left.left;
+            } else {
+                this.left = null;
+            }
+            return;
+        }
+        if (this.right != null && this.right.no == no) {
+            if (this.right.left != null) {
+                this.right = this.right.left;
+            }else{
+                this.right = null;
+            }
+            return;
+        }
+        if (this.left != null) {
+            this.left.delNode(no);
+        }
+        if (this.right != null) {
+            this.right.delNode(no);
+        }
+    }
+
 
     //前序遍历
     public void preOrder() {
