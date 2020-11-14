@@ -9,7 +9,9 @@ import java.util.*;
 public class HuffmanCode {
     public static void main(String[] args) {
         String content = "i like like like java do you like a java";
+        //将原始字符串转为二进制数组
         byte[] contentBytes = content.getBytes();
+        System.out.println(Arrays.toString(contentBytes));
         List<Node> nodes = getNodes(contentBytes);
         System.out.println(nodes);
 
@@ -19,9 +21,27 @@ public class HuffmanCode {
         preOrder(huffmanTreeRoot);
 
         //测试生成哈夫曼编码
-        getCodes(huffmanTreeRoot,"",stringBuilder);
+//        getCodes(huffmanTreeRoot, "", stringBuilder);
+        Map<Byte, String> huffmanCodes = getCodes(huffmanTreeRoot);
         System.out.println("哈夫曼编码表~");
         System.out.println(huffmanCodes);
+
+        byte[] huffmanCodeBytes = zip(contentBytes,huffmanCodes);
+        System.out.println("哈夫曼编码压缩后：");
+        System.out.println(Arrays.toString(huffmanCodeBytes));
+    }
+
+    //创建一个总方法，将子功能封装起来，便于调用
+    public static byte[] huffmanZip(byte[] bytes){
+        List<Node> nodes = getNodes(bytes);
+        //根据创建的节点创建哈夫曼树
+        Node huffmanTreeRoot = createHuffmanTree(nodes);
+        //根据哈夫曼树生成对应的哈夫曼编码
+        Map<Byte,String> huffmanCodes = getCodes(huffmanTreeRoot);
+        //根据生成的哈夫曼编码，压缩得到压缩后的哈夫曼编码字节数组
+        byte[] huffmanCodeBytes = zip(bytes,huffmanCodes);
+
+        return huffmanCodeBytes;
     }
 
     //前序遍历
@@ -77,39 +97,90 @@ public class HuffmanCode {
 
     //生成哈夫曼树对应的哈夫曼编码
     /*
-    * 思路
-    * 1、将哈夫曼表存放在Map<Byte,String>形式，如：32->01,97->100等
-    * */
-    static Map<Byte,String> huffmanCodes = new HashMap<Byte,String>();
+     * 思路
+     * 1、将哈夫曼表存放在Map<Byte,String>形式，如：32->01,97->100等
+     * */
+    static Map<Byte, String> huffmanCodes = new HashMap<Byte, String>();
     /*
-    * 2、在生成哈夫曼表时，需要拼接路径，定义一个StringBuilder存放某个叶子节点的路径
-    * */
+     * 2、在生成哈夫曼表时，需要拼接路径，定义一个StringBuilder存放某个叶子节点的路径
+     * */
     static StringBuilder stringBuilder = new StringBuilder();
 
+    private static Map<Byte, String> getCodes(Node root) {
+        if (root == null) {
+            return null;
+        }
+        //处理root左子树
+        getCodes(root.left, "0", stringBuilder);
+        getCodes(root.right, "1", stringBuilder);
+        return huffmanCodes;
+    }
+
     /*
-    * 功能：将传入的node节点的所有叶子结点的哈夫曼编码得到，并放入到huffmanCodes
-    * node:传入结点
-    * code:路径编码：左子节点的是0，右子节点是1
-    * stringbuilder用于拼接路径
-    * */
-    private static void getCodes(Node node,String code,StringBuilder stringBuilder)
-    {
+     * 功能：将传入的node节点的所有叶子结点的哈夫曼编码得到，并放入到huffmanCodes
+     * node:传入结点
+     * code:路径编码：左子节点的是0，右子节点是1
+     * stringbuilder用于拼接路径
+     * */
+    private static void getCodes(Node node, String code, StringBuilder stringBuilder) {
         StringBuilder stringBuilder2 = new StringBuilder(stringBuilder);
         //将code加入到stringbuilder2中
         stringBuilder2.append(code);
-        if(node!=null){//判断当前节点是否为空
+        if (node != null) {//判断当前节点是否为空
             //判断当前节点是否是非叶子结点
-            if(node.data == null){
+            if (node.data == null) {
                 //递归处理
                 //向左递归
-                getCodes(node.left,"0",stringBuilder2);
+                getCodes(node.left, "0", stringBuilder2);
                 //向右递归
-                getCodes(node.right,"1",stringBuilder2);
-            }else{//说明是个叶子节点
-                huffmanCodes.put(node.data,stringBuilder2.toString());
+                getCodes(node.right, "1", stringBuilder2);
+            } else {//说明是个叶子节点
+                huffmanCodes.put(node.data, stringBuilder2.toString());
             }
         }
     }
+
+    //编写方法：将字符串对应的byte[]数组，通过生成赫夫曼编码表，返回一个哈夫曼编码压缩后的byte[]
+    /*
+    *bytes:原始字符串对应的二进制编码
+    * huffmanCodes:生成的哈夫曼编码表Map
+    * 返回哈夫曼编码处理后的byte[]
+    * */
+    private static byte[] zip(byte[] bytes,Map<Byte,String> huffmanCodes){
+        //利用huffmanCodes 将bytes 转成对应的哈夫曼字符串
+        StringBuilder stringbuilder = new StringBuilder();
+        //遍历byte[]
+        for(byte b:bytes){
+            String strbyte = huffmanCodes.get(b);
+            stringbuilder.append(strbyte);
+        }
+
+        //将产生的原始字符串的哈夫曼编码二进制串进行处理，转成byte[]
+        //统计返回的byte[]的长度
+        int len;
+        if(stringbuilder.length() % 8 ==0){
+            len = stringbuilder.length()/8;
+        }else{
+            len = stringbuilder.length()/8 +1;
+        }
+
+        //创建压缩后的byte[]
+        byte[] huffmanCodeBytes = new byte[len];
+        int index = 0;
+        for(int i = 0;i<stringbuilder.length();i+=8){//每八位对应一个byte
+            String strByte = "";
+            //将strByte转成一个byte，放入到
+            if(i+8>stringbuilder.length()){
+                strByte = stringbuilder.substring(i);
+            }else{
+                strByte = stringbuilder.substring(i,i+8);
+            }
+            huffmanCodeBytes[index] = (byte)Integer.parseInt(strByte,2);
+            index++;
+        }
+        return huffmanCodeBytes;
+    }
+
 }
 
 //创建节点，存放数据和权值
@@ -147,4 +218,5 @@ class Node implements Comparable<Node> {
             this.right.preOrder();
         }
     }
+
 }
