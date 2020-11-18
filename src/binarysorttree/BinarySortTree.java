@@ -15,7 +15,7 @@ public class BinarySortTree {
         System.out.println("输出中序遍历~");
         bSortTree.infixOrder();
 
-        bSortTree.delNode(2);
+        bSortTree.delNode(7);
 
         System.out.println("输出中序遍历~");
         bSortTree.infixOrder();
@@ -59,6 +59,18 @@ class bSortTree {
         }
     }
 
+    //方法：传入一个结点node，返回以node为根节点的二叉排序树的最小值并删除最小节点
+    public int delRightTreeMin(Node node){
+        Node target = node;
+        //循环查找子节点就会找到最小值
+        if(target.left!=null){
+            target = target.left;
+        }
+        //删除最小结点，并返回该节点的值
+        delNode(target.value);
+        return target.value;
+    }
+
     //删除结点
     public void delNode(int value) {
         if (root == null) {
@@ -85,6 +97,25 @@ class bSortTree {
                 } else if (parent.right != null && parent.right.value == value) {
                     parent.right = null;
                 }
+            } else if (targetNode.left != null && targetNode.right != null) {//删除有两个子树的节点
+                int minVal = delRightTreeMin(targetNode.right);
+                targetNode.value = minVal;
+            } else {//删除只有一个子树的节点
+                if(targetNode.left!=null){//待删除结点的左子树不为空
+                    if(parent.left == targetNode){
+                        parent.left = targetNode.left;
+                    }else{
+                        parent.right = targetNode.left;
+                    }
+                }else{//待删除结点的右子树不为空
+                    if(parent.left == targetNode){
+                        parent.left = targetNode.right;
+                    }else{
+                        parent.right = targetNode.right;
+                    }
+
+                }
+
             }
         }
 
