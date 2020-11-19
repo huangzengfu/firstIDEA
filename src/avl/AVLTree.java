@@ -6,8 +6,8 @@ package avl;
  **/
 public class AVLTree {
     public static void main(String[] args) {
-//        int[] arr = {4, 3, 6, 5, 7, 8};
-        int[] arr = {10, 8, 9, 12, 7, 6};
+        int[] arr = {4, 3, 6, 5, 7, 8};
+//        int[] arr = {10, 8, 9, 12, 7, 6};
         aTree avlTree = new aTree();
         for (int i : arr) {
             avlTree.add(new Node(i));
