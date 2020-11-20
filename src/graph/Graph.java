@@ -52,6 +52,7 @@ public class Graph {
     //5、输出图对应的邻接矩阵
     public void showGraph(){
         for(int[] link:edges){
+
             System.out.println(Arrays.toString(link));
         }
     }
