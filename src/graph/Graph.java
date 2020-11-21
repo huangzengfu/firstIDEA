@@ -3,6 +3,7 @@ package graph;
 import javax.management.ValueExp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * @author hf
@@ -100,11 +101,52 @@ public class Graph {
             w = getNextNeighbor(i, w);
         }
     }
+
     //对dfs进行重载，遍历所有节点，进行dfs
-    public void dfs(){
-        for(int i = 0;i<vertexList.size();i++){
-            if(!isVisited[i]){
-                dfs(isVisited,i);
+    public void dfs() {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]) {
+                dfs(isVisited, i);
+            }
+        }
+    }
+
+    //广度优先搜索
+    public void bfs(boolean[] isVisited, int i) {
+        int u;//表示队列头节点对应的下标
+        int w;//邻接节点下标
+
+        //队列，记录节点的访问顺序
+        LinkedList queue = new LinkedList();
+        //访问节点，输出节点值
+        System.out.println(getValueByIndex(i));
+        //将该节点标记为已访问
+        isVisited[i] = true;
+        //将节点加入队列
+        queue.addLast(i);
+
+        while (!queue.isEmpty()) {
+            u = (Integer) queue.removeFirst();//第一个节点出队列
+            w = getFirstNeighbor(u);//获取第一个节点的第一个邻接节点
+            while (w != -1) {//找到
+                //是否访问过
+                if (!isVisited[w]) {
+                    System.out.println(getValueByIndex(w) + "->");
+                    isVisited[w] = true;
+                    //入队列
+                    queue.addLast(w);
+                }
+                //若访问过就找下一个邻接节点
+                w = getNextNeighbor(u, w);
+            }
+        }
+    }
+
+    //对dfs进行重载，遍历所有节点，进行dfs
+    public void bfs() {
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]) {
+                dfs(isVisited, i);
             }
         }
     }
