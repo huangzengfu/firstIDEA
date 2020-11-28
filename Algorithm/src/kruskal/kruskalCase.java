@@ -1,5 +1,7 @@
 package kruskal;
 
+import java.util.Arrays;
+
 /**
  * @author hf
  * @createtime 2020-11-26-21:18
@@ -86,6 +88,43 @@ public class kruskalCase {
         }
         return edges;
     }
+    /**
+     * * 功能: 获取下标为 i 的顶点的终点(), 用于后面判断两个顶点的终点是否相同
+     * * @param ends ： 数组就是记录了各个顶点对应的终点是哪个,ends 数组是在遍历过程中，逐步形成
+     * * @param i : 表示传入的顶点对应的下标
+     * * @return 返回的就是 下标为 i 的这个顶点对应的终点的下标, 一会回头还有来理解
+     * */
+    private int getEnd(int[] ends,int i){
+        while(ends[i]!=0){
+            i = ends[i];
+        }
+        return i;
+    }
+
+    public void kruskal(){
+        int index = 0;
+        int ends[] = new int[edgeNum];
+
+        EData[] rets = new EData[edgeNum];
+
+        //获取图所有的边
+        EData[] edges = getEdges();
+
+        sortEdges(edges);
+        for(int i =0;i<edgeNum;i++){
+            int p1 = getPosition(edges[i].start);
+            int p2 = getPosition(edges[i].end);
+
+            int m = getEnd(ends,p1);
+            int n = getEnd(ends,p2);
+
+            if(m!=n){
+                ends[m] = n;
+                rets[index++] = edges[i];
+            }
+        }
+        System.out.println("最小生成树为="+Arrays.toString(rets));
+    }
 
     public static void main(String[] args) {
         char[] vertexs = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
@@ -101,17 +140,22 @@ public class kruskalCase {
                 /*G*/ {14, INF, INF, INF, 8, 9, 0}};
         //创建Kruskal实例
         kruskalCase kruskalCase = new kruskalCase(vertexs,matrix);
-        kruskalCase.print();
+//        kruskalCase.print();
+        System.out.println("排序前xx = "+ Arrays.toString(kruskalCase.getEdges()));
+        EData[] edges = kruskalCase.getEdges();
+        kruskalCase.sortEdges(edges);
+        System.out.println("排序后xx = "+Arrays.toString(edges));
+        kruskalCase.kruskal();
     }
 }
 
 //创建一个类，它的实例对象就是一条边
 class EData{
-    int start;//边的开始节点
-    int end;//边的结束节点
+    char start;//边的开始节点
+    char end;//边的结束节点
     int weight;//边的权值
 
-    public EData(int start,int end,int weight){
+    public EData(char start,char end,int weight){
         this.start = start;
         this.end = end;
         this.weight = weight;
