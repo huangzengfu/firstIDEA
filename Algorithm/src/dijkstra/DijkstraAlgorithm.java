@@ -24,7 +24,7 @@ public class DijkstraAlgorithm {
         //测试, 看看图的邻接矩阵是否 ok
         graph.showGraph();
         //测试迪杰斯特拉算法
-        graph.dsj(2);
+        graph.dsj(6);
         graph.showDijkstra();
     }
 }
@@ -71,8 +71,8 @@ class Graph {
             len = vv.getDis(index) + matrix[index][i];
             // 如果 i 顶点没有被访问过，并且 len 小于出发顶点到 i 顶点的距离，就需要更新
             if (!vv.in(i) && len < vv.getDis(i)) {
-                vv.updateDis(index, len);
-                vv.updatePre(index, i);
+                vv.updatePre(i, index);
+                vv.updateDis(i, len);
             }
         }
     }
@@ -110,8 +110,8 @@ class VisitedVertex {
     }
 
     //更新前驱节点
-    public void updatePre(int index, int pre) {
-        pre_visited[index] = pre;
+    public void updatePre(int pre, int index) {
+        pre_visited[pre] = index;
     }
 
     //返回出发顶点到index的距离
