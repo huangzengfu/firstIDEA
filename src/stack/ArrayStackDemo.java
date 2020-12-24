@@ -58,7 +58,7 @@ public class ArrayStackDemo {
     }
 }
 
-class ArrayStack {
+class ArrayStack  {
     private int maxSize;
     private int[] stack;
     private int top = -1;
