@@ -47,7 +47,7 @@ public class telephoneNumToString {
             return;
         }
 
-        char c = digits.charAt(index);
+        Character c = digits.charAt(index);
         String letters = letterMap[c - '0'];
         for (int i = 0; i < letters.length(); i++) {
             findCombination(digits, index + 1, s + letters.charAt(i));

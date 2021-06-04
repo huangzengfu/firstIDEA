@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="encrypt.js"></script>
+    <script>
+        $.ajax({
+
+            url: 'http://dj.cqsxedu.com/new_getLoginInfo.ashx',
+            dataType: 'text',
+            type: 'get',
+            success: function (res) {
+                console.log(res);
+                var userId = res.split("=")[1].split(",")[0];
+                console.log(userId);
+                userId = encrypt(userId);
+                window.location.href="http://172.17.1.2:8082/cqAdmin/cq.html?userId=" + userId;
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    </script>
+
+</head>
+<body>
+    testetsteststetetstetstetse
+</body>
+</html>
