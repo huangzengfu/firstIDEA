@@ -27,6 +27,7 @@ public class order {
 
 class preOrder {
     public void preorder(TreeNode1 root) {
+
         Stack<TreeNode1> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()||root != null) {
