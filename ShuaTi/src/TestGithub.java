@@ -7,6 +7,5 @@ public class TestGithub {
         System.out.println("测试revert ");
         System.out.println("测试revert ");
         System.out.println("测试revert ");
-        System.out.println("测试revert ");
     }
 }
