@@ -6,6 +6,10 @@ public class TestGithub {
     public static void main(String[] args) {
         System.out.println();
         System.out.println("测试git reset");
-        System.out.println("测试git reset");
+        System.out.println("测试git revert");
+    }
+
+    public void test(){
+
     }
 }
