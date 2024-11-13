@@ -9,6 +9,7 @@ public class TestGithub {
         System.out.println("测试git revert");
         System.out.println("测试git revert");
         System.out.println("测试git revert");
+        System.out.println("测试git revert");
     }
 
     public void test(){
