@@ -16,15 +16,23 @@ public class TestGithub {
 
     public void test(){
         System.out.println("test");
+        System.out.println("test1");
     }
     public void test1(){
         System.out.println("test");
         System.out.println("modify from test");
         System.out.println("modify from test");
         System.out.println("modify from test");
+        System.out.println("test1");
+        System.out.println("modify from test1");
+
     }
 
     public void testskldfjl(){
+
+    }
+
+    public void testForDiffMerge(){
 
     }
 }
