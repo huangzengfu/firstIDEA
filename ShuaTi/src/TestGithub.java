@@ -29,7 +29,7 @@ public class TestGithub {
     }
 
     public void testskldfjl(){
-
+        System.out.println("push after stash");
     }
 
     public void testForDiffMerge(){
