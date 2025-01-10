@@ -30,6 +30,7 @@ public class TestGithub {
 
     public void testskldfjl(){
         System.out.println("push after stash");
+        System.out.println("testskldfjl");
     }
 
     public void testForDiffMerge(){
