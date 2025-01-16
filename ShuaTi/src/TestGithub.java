@@ -24,5 +24,6 @@ public class TestGithub {
 
     public void testForDiffMerge(){
         System.out.println("test cherry pick！");
+        System.out.println("al;dfjaskl;dfjk");
     }
 }
