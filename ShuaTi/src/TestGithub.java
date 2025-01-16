@@ -23,6 +23,6 @@ public class TestGithub {
     }
 
     public void testForDiffMerge(){
-
+        System.out.println("test cherry pick！");
     }
 }
